@@ -33,7 +33,7 @@ router.put("/:cid", (req, res) => {
 });
 
 
-app.post("/:cid/product/:pid", (req, res) => {
+router.post("/:cid/product/:pid", (req, res) => {
     const cid = req.params.cid;
     const pid = req.params.pid;
     const cart = carts.find(cart => cart.id == cid);
