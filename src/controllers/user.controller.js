@@ -13,7 +13,7 @@ exports.loginUser = async (req, res) => {
 
  */
 
-import {User} from "../models/users.model.js";
+import { User } from "../models/users.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -41,22 +41,41 @@ export const loginUser = async (req, res) => {
 
 export const getUsers = async (req, res) => {
   const users = await User.find();
-  // res.json({ message: "User created successfully", users });
-  res.send({ result:"success", payload: users });
+  res.send({ result: "success", payload: users });
 };
 
 export const getUserById = async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id);
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
   res.json(user);
 };
 
 export const createUser = async (req, res) => {
-  const { first_name, last_name, email} = req.body;
-  // const encryptedPassword = await bcrypt.hash(password, 10);
-  const user = new User({ first_name, last_name, email });
+  const { first_name, last_name, email, password } = req.body;
+  const userExists = await User.findOne({ email });
+  if (userExists) {
+    return res.status(400).json({ message: "User already exists" });
+  }
+  const encryptedPassword = await bcrypt.hash(password, 10);
+  const user = new User({
+    first_name,
+    last_name,
+    email,
+    password: encryptedPassword,
+  });
   await user.save();
-  res.json({ message: "User created successfully" });
+  res.send({
+    result: "User created successfully",
+    payload: {
+      user_id: user._id,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      email: user.email,
+    },
+  });
 };
 
 export default { registerUser, loginUser, getUsers, getUserById, createUser };
