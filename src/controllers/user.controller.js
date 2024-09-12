@@ -39,4 +39,24 @@ export const loginUser = async (req, res) => {
   res.json({ token });
 };
 
-export default { registerUser, loginUser }
+export const getUsers = async (req, res) => {
+  const users = await User.find();
+  // res.json({ message: "User created successfully", users });
+  res.send({ result:"success", payload: users });
+};
+
+export const getUserById = async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id);
+  res.json(user);
+};
+
+export const createUser = async (req, res) => {
+  const { first_name, last_name, email} = req.body;
+  // const encryptedPassword = await bcrypt.hash(password, 10);
+  const user = new User({ first_name, last_name, email });
+  await user.save();
+  res.json({ message: "User created successfully" });
+};
+
+export default { registerUser, loginUser, getUsers, getUserById, createUser };

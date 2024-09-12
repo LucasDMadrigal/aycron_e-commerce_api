@@ -12,14 +12,16 @@ app.use(express.urlencoded({ extended: true }));
  * importar productos del archivo products.json
  */
 
+
+app.use("/api/products", ProductRouter);
+
+app.use("/api/carts", CartsRouter);
+
+app.use("/api/users", userRouter)
+
 connectDB();
 
-app.use("/products", ProductRouter);
-
-app.use("/carts", CartsRouter);
-
-app.use("/users", userRouter)
 
 app.listen(process.env.PORT, () => {
-    console.log("Server started on port 8080");
+    console.log("Server started on port "+process.env.PORT);
 });
