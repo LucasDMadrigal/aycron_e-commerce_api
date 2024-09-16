@@ -6,7 +6,8 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   isAdmin: { type: Boolean, default: false },
-  Product:{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}
+  delete: { type: Boolean, default: false },
+  Products:{type: mongoose.Schema.Types.ObjectId, ref: 'Product', default: []}
 });
 
 export const User = mongoose.model('User', userSchema)

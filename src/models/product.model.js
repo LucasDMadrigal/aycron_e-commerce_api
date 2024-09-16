@@ -5,6 +5,7 @@ const productSchema = new mongoose.Schema({
     description: { type: String, required: true },
     price: { type: Number, required: true },
     stock: { type: Number, required: true },
+    delete: { type: Boolean, default: false }
 });
 
 export const Product = mongoose.model('Product', productSchema)
