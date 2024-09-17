@@ -1,18 +1,3 @@
-/**
- * const User = require('../models/User');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-
-exports.registerUser = async (req, res) => {
-  // Lógica para registrar usuario
-};
-
-exports.loginUser = async (req, res) => {
-  // Lógica para iniciar sesión
-};
-
- */
-
 import { User } from "../models/users.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
