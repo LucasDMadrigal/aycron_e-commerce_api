@@ -3,11 +3,18 @@ import jwt from "jsonwebtoken";
 import { User } from "../models/users.model.js";
 
 class MongoUserRepository {
-  async save(user) {
+  async createUser(user) {
     const newUser = new User(user);
     return await newUser.save();
   }
 
+  async findAll() {
+    return await User.find();
+  }
+
+  async findOne(email) {
+    return await User.findOne({ email });
+  }
   async findByEmail(email) {
     return await User.findOne({ email });
   }
@@ -24,3 +31,4 @@ class MongoUserRepository {
     return await User.findByIdAndUpdate(id, { deleted: true });
   }
 }
+export default MongoUserRepository;
