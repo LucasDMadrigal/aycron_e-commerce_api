@@ -17,7 +17,7 @@ app.use("/api/products", ProductRouter);
 
 app.use("/api/carts", CartsRouter);
 
-app.use("/api/users", userRouter)
+app.use("/api/user", userRouter)
 
 connectDB();
 

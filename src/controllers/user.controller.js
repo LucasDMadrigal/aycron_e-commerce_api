@@ -7,7 +7,8 @@ const userRepository = new mongoUserRepository();
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
-  const user = userRepository.findByEmail(email);
+  console.log("🚀 ~ loginUser ~ password:", password)
+  const user = await userRepository.findByEmail(email)
   if (!user) {
     return res.status(401).json({ message: "Invalid email or password" });
   }
@@ -63,7 +64,6 @@ export const updateUser = async (req, res) => {
   const { first_name, last_name, email } = req.body;
   // const encryptedPassword = await bcrypt.hash(password, 10);
 
-  const user = userRepository;
   try {
     const updateUser = {
       first_name,
@@ -71,7 +71,7 @@ export const updateUser = async (req, res) => {
       email,
     };
 
-    const userUpdated = await user.update(id, updateUser);
+    const userUpdated = await userRepository.update(id, updateUser);
 
     res.send({
       result: "User updated successfully",
@@ -84,7 +84,7 @@ export const updateUser = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   const { id } = req.params;
-  const user = userRepository.delete(id);
+  const user = await userRepository.delete(id);
   if (!user) {
     return res.status(404).json({ message: "User not found" });
   }
