@@ -50,42 +50,32 @@ export const registerUser = async (req, res) => {
     email,
     password: encryptedPassword,
   });
-  await userRepository.save(newUser).catch();
+  const userCreated = await userRepository.createUser(newUser);
+
   res.send({
     result: "User created successfully",
-    payload: {
-      user_id: user._id,
-      first_name: user.first_name,
-      last_name: user.last_name,
-      email: user.email,
-    },
+    payload: userCreated,
   });
 };
 
 export const updateUser = async (req, res) => {
   const { id } = req.params;
-  const { first_name, last_name, email, password } = req.body;
-  const encryptedPassword = await bcrypt.hash(password, 10);
+  const { first_name, last_name, email } = req.body;
+  // const encryptedPassword = await bcrypt.hash(password, 10);
 
   const user = userRepository;
   try {
-    const updateUser = new User({
+    const updateUser = {
       first_name,
       last_name,
       email,
-      password: encryptedPassword,
-    });
+    };
 
-    user.update(id, updateUser);
+    const userUpdated = await user.update(id, updateUser);
 
     res.send({
       result: "User updated successfully",
-      payload: {
-        user_id: user._id,
-        first_name: user.first_name,
-        last_name: user.last_name,
-        email: user.email,
-      },
+      payload: userUpdated
     });
   } catch (error) {
     return res.status(404).json({ message: "User not found" });
