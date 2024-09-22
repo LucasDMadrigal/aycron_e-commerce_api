@@ -7,15 +7,19 @@ const userRepository = new mongoUserRepository();
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
-  console.log("🚀 ~ loginUser ~ password:", password)
+
   const user = await userRepository.findByEmail(email)
+
   if (!user) {
     return res.status(401).json({ message: "Invalid email or password" });
   }
+
   const validPassword = await bcrypt.compare(password, user.password);
+
   if (!validPassword) {
     return res.status(401).json({ message: "Invalid email or password" });
   }
+
   const token = jwt.sign({ userId: user._id }, "secretkey");
   res.json({ token });
 };
@@ -26,21 +30,25 @@ export const getUsers = async (req, res) => {
 };
 
 export const getUserById = async (req, res) => {
+
   const { id } = req.params;
+
   const user = userRepository.findById(id);
+
   if (!user) {
     return res.status(404).json({ message: "User not found" });
   }
+
   res.json(user);
 };
 
 export const registerUser = async (req, res) => {
+
   const { first_name, last_name, email, password } = req.body;
+
   const user = userRepository.findByEmail(email);
 
-  const userExists = await User.findOne({ email });
-
-  if (userExists) {
+  if (user) {
     return res.status(400).json({ message: "User already exists" });
   }
   const encryptedPassword = await bcrypt.hash(password, 10);
@@ -62,7 +70,6 @@ export const registerUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   const { id } = req.params;
   const { first_name, last_name, email } = req.body;
-  // const encryptedPassword = await bcrypt.hash(password, 10);
 
   try {
     const updateUser = {
