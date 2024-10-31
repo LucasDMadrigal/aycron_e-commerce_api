@@ -1,4 +1,4 @@
-import { Product } from "../models/products.model.js";
+import { Product } from "../models/product.model.js"
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import MongoProductRepository from "../infrastructure/mongoProductRepository.js";
@@ -39,5 +39,10 @@ export const deleteProduct = async (req, res) => {
     res.send({ result: "success", payload: deletedProduct });
 }
 
-
-
+export default {
+    createProduct,
+    getProducts,
+    getProductById,
+    updateProduct,
+    deleteProduct
+}

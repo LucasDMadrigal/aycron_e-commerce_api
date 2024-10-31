@@ -20,8 +20,8 @@ export const loginUser = async (req, res) => {
     return res.status(401).json({ message: "Invalid email or password" });
   }
 
-  const token = jwt.sign({ userId: user._id }, "secretkey");
-  res.json({ token });
+  const token = jwt.sign({ userId: user._id, isAdmin: user.isAdmin }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  res.json(token);
 };
 
 export const getUsers = async (req, res) => {
