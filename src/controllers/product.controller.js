@@ -1,4 +1,4 @@
-import { Product } from "../models/product.model.js"
+import { Product } from "../core/models/product.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import MongoProductRepository from "../infrastructure/mongoProductRepository.js";

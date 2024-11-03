@@ -1,4 +1,4 @@
-import { User } from "../models/users.model.js";
+import { User } from "../core/models/users.model.js";
 
 class MongoUserRepository {
   async createUser(user) {

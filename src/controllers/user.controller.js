@@ -1,27 +1,22 @@
-import { User } from "../models/users.model.js";
+import { User } from "../core/models/users.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import mongoUserRepository from "../infrastructure/mongoUserRepository.js";
+import loginUserUseCase from "../core/useCases/loginUserUseCase.js";
 
 const userRepository = new mongoUserRepository();
 
 export const loginUser = async (req, res) => {
-  const { email, password } = req.body;
 
-  const user = await userRepository.findByEmail(email)
+  try {
+    const { email, password } = req.body;
+    const result = await loginUserUseCase({ email, password });
 
-  if (!user) {
-    return res.status(401).json({ message: "Invalid email or password" });
+    res.status(200).json(result);
+
+  } catch (error) {
+    res.status(400).json({ message: error.message });
   }
-
-  const validPassword = await bcrypt.compare(password, user.password);
-
-  if (!validPassword) {
-    return res.status(401).json({ message: "Invalid email or password" });
-  }
-
-  const token = jwt.sign({ userId: user._id, isAdmin: user.isAdmin }, process.env.JWT_SECRET, { expiresIn: '1h' });
-  res.json(token);
 };
 
 export const getUsers = async (req, res) => {

@@ -1,5 +1,4 @@
-import { Product } from "../models/product.model.js";
-
+import { Product } from "../core/models/product.model.js";
 export default class MongoProductRepository {
     async createProduct(product) {
         const newProduct = new Product(product);
