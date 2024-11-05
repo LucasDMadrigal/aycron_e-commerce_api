@@ -5,6 +5,8 @@ import purchaseRepository from "../../infrastructure/mongoPurchaseRepository.js"
 const productRepository = new ProductRepository();
 const userRepository = new UserRepository();
 const purchaseRepository = new purchaseRepository();
+
+
 const purchaseProductUseCase = async (productId, userId, quantity) => {
   const session = await mongoose.startSession();
 
