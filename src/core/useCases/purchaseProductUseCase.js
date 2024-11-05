@@ -16,14 +16,14 @@ const purchaseProductUseCase = async (productId, userId, quantity) => {
     const user = await userRepository.findById(userId);
 
     if (!product) {
-      return { statusCode: 404, message: "Product not found" };
+      return { statusCode: 404, payload: "Product not found" };
     }
     if (!user) {
-      return { statusCode: 404, message: "User not found" };
+      return { statusCode: 404, payload: "User not found" };
     }
 
     if (product.quantity < quantity) {
-      return { statusCode: 400, message: "Insufficient quantity" };
+      return { statusCode: 400, payload: "Insufficient quantity" };
     }
 
     product.quantity -= quantity;

@@ -41,8 +41,8 @@ export const registerUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   const { id } = req.params;
-  const { first_name, last_name, email } = req.body;
-  const result = await updateUserUseCase({ id, first_name, last_name, email });
+  const { first_name, last_name, email, isAdmin } = req.body;
+  const result = await updateUserUseCase({ id, first_name, last_name, email, isAdmin });
 
   res.status(result.statusCode).json(result.payload);
 };

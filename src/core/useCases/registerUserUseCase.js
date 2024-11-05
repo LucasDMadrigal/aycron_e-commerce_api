@@ -8,7 +8,7 @@ const registerUserUseCase = async ({ first_name, last_name, email, password }) =
   const user = await userRepository.findByEmail(email);
 
   if (user) {
-    return { statusCode: 400, message: "User already exists" };
+    return { statusCode: 400, payload: "User already exists" };
   }
 
   const encryptedPassword = await bcrypt.hash(password, 10);

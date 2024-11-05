@@ -24,7 +24,7 @@ const loginUserUseCase = async ({ email, password }) => {
     process.env.JWT_SECRET,
     { expiresIn: "1h" }
   );
-  return { token };
+  return { statusCode: 202, payload: token };
 };
 
 export default loginUserUseCase;
