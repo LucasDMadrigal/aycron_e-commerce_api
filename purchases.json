@@ -1,0 +1,66 @@
+[
+    {
+      "user_id": "645a9c8f8f3b2c1d6f8a7c45",
+      "products": [
+        {
+          "product_id": "672a7df54200afc850949e80",
+          "quantity": 2,
+          "price": 299.99
+        },
+        {
+          "product_id": "672a7df54200afc850949e82",
+          "quantity": 1,
+          "price": 599.99
+        },
+        {
+          "product_id": "672a7df54200afc850949e87",
+          "quantity": 3,
+          "price": 49.99
+        }
+      ],
+      "date": "2024-11-01T10:30:00Z"
+    },
+    {
+      "user_id": "645a9c8f8f3b2c1d6f8a7c46",
+      "products": [
+        {
+          "product_id": "672a7df54200afc850949e80",
+          "quantity": 1,
+          "price": 699.99
+        },
+        {
+          "product_id": "672a7df54200afc850949e82",
+          "quantity": 2,
+          "price": 399.99
+        },
+        {
+          "product_id": "672a7df54200afc850949e87",
+          "quantity": 1,
+          "price": 1199.99
+        }
+      ],
+      "date": "2024-10-31T15:00:00Z"
+    },
+    {
+      "user_id": "645a9c8f8f3b2c1d6f8a7c47",
+      "products": [
+        {
+          "product_id": "672a7df54200afc850949e80",
+          "quantity": 5,
+          "price": 19.99
+        },
+        {
+          "product_id": "672a7df54200afc850949e82",
+          "quantity": 3,
+          "price": 89.99
+        },
+        {
+          "product_id": "672a7df54200afc850949e87",
+          "quantity": 2,
+          "price": 49.99
+        }
+      ],
+      "date": "2024-11-01T09:45:00Z"
+    }
+  ]
+  

@@ -1,4 +1,4 @@
-import MongoPurchaseRepository from "../../infrastructure/mongoPurchaseRepository";
+import MongoPurchaseRepository from "../../infrastructure/mongoPurchaseRepository.js";
 
 const purchaseRepository = new MongoPurchaseRepository();
 

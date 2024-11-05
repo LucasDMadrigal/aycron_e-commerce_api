@@ -2,6 +2,7 @@ import express from "express";
 import ProductRouter from "./routes/products.router.js";
 import CartsRouter from "./routes/carts.router.js";
 import userRouter from './routes/users.router.js'
+import purchaseRouter from './routes/purchase.router.js'
 import connectDB from "./config/db.js";
 
 const app = express();
@@ -19,6 +20,7 @@ app.use("/api/carts", CartsRouter);
 
 app.use("/api/user", userRouter)
 
+app.use("/api/purchase", purchaseRouter)
 connectDB();
 
 

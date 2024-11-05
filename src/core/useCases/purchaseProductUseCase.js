@@ -1,48 +1,56 @@
-import ProductRepository from "../../infrastructure/mongoProductRepository.js";
-import UserRepository from "../../infrastructure/mongoUserRepository.js";
-import purchaseRepository from "../../infrastructure/mongoPurchaseRepository.js";
+import MongoProductRepository from "../../infrastructure/mongoProductRepository.js";
+import MongoUserRepository from "../../infrastructure/mongoUserRepository.js";
+import MongoPurchaseRepository from "../../infrastructure/mongoPurchaseRepository.js";
+import mongoose from "mongoose";
 
-const productRepository = new ProductRepository();
-const userRepository = new UserRepository();
-const purchaseRepository = new purchaseRepository();
+const productRepository = new MongoProductRepository();
+const userRepository = new MongoUserRepository();
+const purchaseRepository = new MongoPurchaseRepository();
 
-
-const purchaseProductUseCase = async (productId, userId, quantity) => {
+const purchaseProductUseCase = async (products, userId) => {
   const session = await mongoose.startSession();
 
   try {
     session.startTransaction();
-    const product = await productRepository.findById(productId);
+    const productsList = products;
     const user = await userRepository.findById(userId);
 
-    if (!product) {
-      return { statusCode: 404, payload: "Product not found" };
-    }
     if (!user) {
       return { statusCode: 404, payload: "User not found" };
     }
 
-    if (product.quantity < quantity) {
-      return { statusCode: 400, payload: "Insufficient quantity" };
+    if (productsList.length === 0) {
+      return { statusCode: 400, payload: "Invalid quantity" };
     }
 
-    product.quantity -= quantity;
+    productsList.forEach(async (product) => {
+      const productExists = await productRepository.findById(
+        product.product_id
+      );
+      if (!productExists) {
+        return { statusCode: 404, payload: "Product not found" };
+      }
+      if (productExists.quantity < product.quantity) {
+        return { statusCode: 400, payload: "Not enough stock" };
+      }
 
-    await productRepository.update(productId, product);
+      productExists.quantity -= product.quantity;
+      await productExists.save();
+    });
 
-    const purchase = {
+    const purchase = await purchaseRepository.createPurchase({
       user_id: userId,
-      products: [
-        {
-          product_id: productId,
-          quantity,
-          price: product.price,
-        },
-      ],
-    };
+      products,
+      date: new Date(),
+    });
 
-    const newPurchase = await purchaseRepository.createPurchase(purchase);
-    return newPurchase;
+    await session.commitTransaction();
+    session.endSession();
+    return res.status(201).json({
+      statusCode: 201,
+      payload: purchase,
+    });
+
   } catch (error) {
     await session.abortTransaction();
     throw error;

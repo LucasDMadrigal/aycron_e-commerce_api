@@ -1,65 +1,72 @@
-{
-    "products": [
-      {
-        "nombre": "Laptop",
-        "descripcion": "Laptop con 16GB de RAM y 512GB de SSD.",
-        "precio": 1200.99,
-        "stock": 15
-      },
-      {
-        "nombre": "Smartphone",
-        "descripcion": "Smartphone con pantalla OLED de 6.5 pulgadas.",
-        "precio": 799.49,
-        "stock": 30
-      },
-      {
-        "nombre": "Teclado Mecánico",
-        "descripcion": "Teclado mecánico con interruptores Cherry MX Blue.",
-        "precio": 99.99,
-        "stock": 50
-      },
-      {
-        "nombre": "Monitor 4K",
-        "descripcion": "Monitor 4K de 27 pulgadas con HDR.",
-        "precio": 399.99,
-        "stock": 10
-      },
-      {
-        "nombre": "Mouse Inalámbrico",
-        "descripcion": "Mouse ergonómico inalámbrico con batería recargable.",
-        "precio": 49.99,
-        "stock": 25
-      },
-      {
-        "nombre": "Auriculares Bluetooth",
-        "descripcion": "Auriculares Bluetooth con cancelación de ruido.",
-        "precio": 149.99,
-        "stock": 20
-      },
-      {
-        "nombre": "Cámara DSLR",
-        "descripcion": "Cámara DSLR con lente de 18-55mm y 24.1 MP.",
-        "precio": 549.99,
-        "stock": 12
-      },
-      {
-        "nombre": "Tablet",
-        "descripcion": "Tablet con pantalla de 10 pulgadas y 128GB de almacenamiento.",
-        "precio": 299.99,
-        "stock": 18
-      },
-      {
-        "nombre": "Impresora Multifunción",
-        "descripcion": "Impresora multifunción con escáner y Wi-Fi.",
-        "precio": 199.99,
-        "stock": 8
-      },
-      {
-        "nombre": "Disco Duro Externo",
-        "descripcion": "Disco duro externo de 2TB con USB 3.0.",
-        "precio": 89.99,
-        "stock": 40
-      }
-    ]
+[
+  {
+    "name": "Smartphone",
+    "description": "Smartphone con pantalla OLED de 6.5 pulgadas y cámara de 48 MP",
+    "price": 699.99,
+    "stock": 120,
+    "delete": false
+  },
+  {
+    "name": "Laptop",
+    "description": "Laptop de 15 pulgadas con procesador Intel i7 y 16 GB de RAM",
+    "price": 1199.99,
+    "stock": 50,
+    "delete": false
+  },
+  {
+    "name": "Tablet",
+    "description": "Tablet de 10 pulgadas con almacenamiento de 64 GB",
+    "price": 299.99,
+    "stock": 80,
+    "delete": false
+  },
+  {
+    "name": "Smartwatch",
+    "description": "Smartwatch resistente al agua con monitor de frecuencia cardíaca",
+    "price": 199.99,
+    "stock": 150,
+    "delete": false
+  },
+  {
+    "name": "Auriculares inalámbricos",
+    "description": "Auriculares con cancelación de ruido y batería de larga duración",
+    "price": 129.99,
+    "stock": 200,
+    "delete": false
+  },
+  {
+    "name": "Monitor",
+    "description": "Monitor de 27 pulgadas 4K UHD",
+    "price": 399.99,
+    "stock": 60,
+    "delete": false
+  },
+  {
+    "name": "Teclado mecánico",
+    "description": "Teclado mecánico con retroiluminación RGB",
+    "price": 89.99,
+    "stock": 180,
+    "delete": false
+  },
+  {
+    "name": "Mouse inalámbrico",
+    "description": "Mouse ergonómico con sensor óptico de alta precisión",
+    "price": 49.99,
+    "stock": 150,
+    "delete": false
+  },
+  {
+    "name": "Cámara digital",
+    "description": "Cámara digital de 20 MP con lente zoom óptico 10x",
+    "price": 599.99,
+    "stock": 30,
+    "delete": false
+  },
+  {
+    "name": "Disco duro externo",
+    "description": "Disco duro externo de 1 TB para almacenamiento adicional",
+    "price": 79.99,
+    "stock": 120,
+    "delete": false
   }
-  
+]

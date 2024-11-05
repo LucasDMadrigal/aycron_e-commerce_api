@@ -8,4 +8,6 @@ const router = Router();
 router.get("/", authMiddleware, adminMiddleware, purchaseController.getAllPurchases);
 router.get("/:id", authMiddleware, purchaseController.getPurchaseById);
 router.get("/user/:uid", authMiddleware, purchaseController.getPurchasesByUserId);
-router.post("/", authMiddleware, purchaseController.createPurchase);
+router.post("/create", authMiddleware, purchaseController.createPurchase);
+
+export default router;

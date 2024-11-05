@@ -4,8 +4,8 @@ import getPurchasesByUserIdUseCase from "../core/useCases/getPurchasesByUserIdUs
 import getAllPurchasesUseCase from "../core/useCases/getAllPurchasesUseCase.js";
 
 const createPurchase = async (req, res) => {
-    const { productId, userId, quantity } = req.body;
-    const result = await purchaseProductUseCase(productId, userId, quantity);
+    const { products, user_id } = req.body;
+    const result = await purchaseProductUseCase(products, user_id);
     return res.status(result.statusCode).json(result);
 };
 
@@ -26,4 +26,4 @@ const getPurchasesByUserId = async (req, res) => {
     return res.status(result.statusCode).json(result.payload);
 };
 
-export default { createPurchase, getPurchases, getPurchaseById, getPurchasesByUserId };
+export default { createPurchase, getAllPurchases, getPurchaseById, getPurchasesByUserId };
