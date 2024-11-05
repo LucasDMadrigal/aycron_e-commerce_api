@@ -1,4 +1,7 @@
-import userRepository from "../repositories/user.repository.js";
+import MongoUserRepository from "../repositories/user.repository.js";
+
+const userRepository = new MongoUserRepository();
+
 const updateUserUseCase = async ({ id, first_name, last_name, email }) => {
   const user = await userRepository.update(id, {
     first_name,

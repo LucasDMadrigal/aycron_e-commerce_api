@@ -1,11 +1,9 @@
-import mongoUserRepository from "../infrastructure/mongoUserRepository.js";
 import loginUserUseCase from "../core/useCases/loginUserUseCase.js";
 import registerUserUseCase from "../core/useCases/registerUserUseCase.js";
 import updateUserUseCase from "../core/useCases/updateUserUseCase.js";
 import getUsersUseCase from "../core/useCases/getUsersUseCase.js";
 import getUserByIdUseCase from "../core/useCases/getUserByIdUseCase.js";
 import deleteUserUseCase from "../core/useCases/deleteUserUseCase.js";
-const userRepository = new mongoUserRepository();
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -15,8 +13,7 @@ export const loginUser = async (req, res) => {
 };
 
 export const getUsers = async (req, res) => {
-
- const result = await getUsersUseCase();
+  const result = await getUsersUseCase();
 
   res.status(result.statusCode).json(result.payload);
 };
@@ -45,7 +42,7 @@ export const registerUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   const { id } = req.params;
   const { first_name, last_name, email } = req.body;
-const result = await updateUserUseCase({ id, first_name, last_name, email });
+  const result = await updateUserUseCase({ id, first_name, last_name, email });
 
   res.status(result.statusCode).json(result.payload);
 };

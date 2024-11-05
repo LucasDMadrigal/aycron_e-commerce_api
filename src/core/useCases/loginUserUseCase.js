@@ -8,14 +8,15 @@ const loginUserUseCase = async ({ email, password }) => {
   const user = await userRepository.findByEmail(email);
 
   if (!user) {
-    // return res.status(401).json({ message: "Invalid email or password" });
-    return { message: "Invalid email or password" };
+    // return res.status(401).json({ payload: "Invalid email or password" });
+    return { statusCode: 401,  payload: "Invalid email or password" };
   }
 
   const passwordMatch = await bcrypt.compare(password, user.password);
 
   if (!passwordMatch) {
-    return res.status(401).json({ message: "Invalid email or password" });
+    // return res.status(401).json({  });
+    return { statusCode: 401, payload: "Invalid email or password" };
   }
 
   const token = jwt.sign(

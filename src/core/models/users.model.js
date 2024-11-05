@@ -7,7 +7,6 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   isAdmin: { type: Boolean, default: false },
   deleted: { type: Boolean, default: false },
-  Products:{type: mongoose.Schema.Types.ObjectId, ref: 'Product', default: null}
 });
 
 export const User = mongoose.model('User', userSchema)
