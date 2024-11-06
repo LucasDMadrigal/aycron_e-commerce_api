@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 
 const purchaseSchema = new mongoose.Schema({
-    user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     products: [
         {
-            product_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
-            quantity: { type: Number, required: true },
-            price: { type: Number, required: true }
+            product_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+            quantity: { type: Number },
+            price: { type: Number }
         }
-    ], default: [],
+    ], 
     date: { type: Date, default: Date.now }
 });
 

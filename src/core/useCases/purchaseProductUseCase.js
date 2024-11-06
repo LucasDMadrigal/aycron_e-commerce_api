@@ -1,6 +1,7 @@
 import MongoProductRepository from "../../infrastructure/mongoProductRepository.js";
 import MongoUserRepository from "../../infrastructure/mongoUserRepository.js";
 import MongoPurchaseRepository from "../../infrastructure/mongoPurchaseRepository.js";
+import { Purchase } from "../models/purchase.model.js";
 import mongoose from "mongoose";
 
 const productRepository = new MongoProductRepository();
@@ -8,52 +9,55 @@ const userRepository = new MongoUserRepository();
 const purchaseRepository = new MongoPurchaseRepository();
 
 const purchaseProductUseCase = async (products, userId) => {
+  const user = await userRepository.findById(userId);
+
   const session = await mongoose.startSession();
 
+  if (!user) {
+    return { statusCode: 404, payload: "User not found" };
+  }
   try {
-    session.startTransaction();
-    const productsList = products;
-    const user = await userRepository.findById(userId);
+    const result = await session.withTransaction(async () => {
+      const purchaseProducts = [];
 
-    if (!user) {
-      return { statusCode: 404, payload: "User not found" };
-    }
+      for (const product of products) {
+        const productExists = await productRepository.findById(
+          product.product_id,
+          session
+        );
+        if (!productExists) {
+          return { statusCode: 404, payload: "Product not found" };
+        }
 
-    if (productsList.length === 0) {
-      return { statusCode: 400, payload: "Invalid quantity" };
-    }
+        if (productExists.stock < product.quantity) {
+          return { statusCode: 400, payload: "Insufficient stock" };
+        }
 
-    productsList.forEach(async (product) => {
-      const productExists = await productRepository.findById(
-        product.product_id
-      );
-      if (!productExists) {
-        return { statusCode: 404, payload: "Product not found" };
+        productExists.stock -= product.quantity;
+        await productRepository.save(productExists, session);
+        purchaseProducts.push({
+          product_id: productExists._id,
+          quantity: product.quantity,
+          price: productExists.price,
+        });
       }
-      if (productExists.quantity < product.quantity) {
-        return { statusCode: 400, payload: "Not enough stock" };
-      }
 
-      productExists.quantity -= product.quantity;
-      await productExists.save();
+      const newPurchase = new Purchase({
+        user_id: user._id,
+        products: purchaseProducts,
+      });
+
+      await purchaseRepository.createPurchase(newPurchase, session);
+
+      return { statusCode: 201, payload: newPurchase };
     });
 
-    const purchase = await purchaseRepository.createPurchase({
-      user_id: userId,
-      products,
-      date: new Date(),
-    });
-
-    await session.commitTransaction();
-    session.endSession();
-    return res.status(201).json({
-      statusCode: 201,
-      payload: purchase,
-    });
-
+    return result;
   } catch (error) {
-    await session.abortTransaction();
-    throw error;
+    console.log(error);
+    return { statusCode: 500, payload: error };
+  } finally {
+    session.endSession();
   }
 };
 
