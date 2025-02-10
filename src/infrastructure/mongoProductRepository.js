@@ -1,11 +1,13 @@
 import { Product } from "../core/models/product.model.js";
-export default class MongoProductRepository {
+class MongoProductRepository {
 
     async save(product, session = null) {
         return product.save({ session });
     }
     async createProduct(product, session = null) {
-        return await Product.create(product, {session});
+        const newProduct = new Product(product);
+
+        return await newProduct.save({session});
     }
 
     async findAll() {
@@ -28,3 +30,5 @@ export default class MongoProductRepository {
         return await Product.findOne({ name });
     }
 }
+
+export default MongoProductRepository;

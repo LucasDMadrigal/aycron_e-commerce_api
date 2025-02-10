@@ -3,8 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "nyc": {
+  "include": ["src/**/*.js"],  
+  "exclude": ["**/tests/**"],  
+  "reporter": ["text", "html"],
+  "all": true                  
+},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --config mocha.config.json",
+    "coverage": "nyc mocha --config mocha.config.json",
     "dev": "node --watch --env-file .env src/app.js"
   },
   "keywords": [],
@@ -20,7 +27,11 @@
   },
   "type": "module",
   "devDependencies": {
+    "chai": "^5.1.2",
     "eslint": "^9.10.0",
-    "nodemon": "^3.1.4"
+    "mocha": "^10.8.2",
+    "mongodb-memory-server": "^10.1.2",
+    "nodemon": "^3.1.4",
+    "nyc": "^17.1.0"
   }
 }

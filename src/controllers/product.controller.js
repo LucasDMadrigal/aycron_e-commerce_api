@@ -7,8 +7,7 @@ const productRepository = new MongoProductRepository();
 
 export const createProduct = async (req, res) => {
     const product = req.body;
-    const newProduct = new Product(product);
-    await newProduct.save();
+    const newProduct = await productRepository.createProduct(product);
     res.send({
         result: "Product created successfully",
         payload: newProduct
