@@ -12,7 +12,7 @@
   "scripts": {
     "test": "mocha --config mocha.config.json",
     "coverage": "nyc mocha --config mocha.config.json",
-    "dev": "node --watch --env-file .env src/app.js"
+    "dev": "node --env-file .env --watch src/app.js"
   },
   "keywords": [],
   "author": "",
