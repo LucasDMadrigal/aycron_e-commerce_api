@@ -8,7 +8,7 @@ const loginUserUseCase = async ({ email, password }) => {
   const user = await userRepository.findByEmail(email);
 
   if (!user) {
-    return { statusCode: 401,  payload: "Invalid email" };
+    return { statusCode: 401, payload: "Invalid email" };
   }
 
   const passwordMatch = await bcrypt.compare(password, user.password);
@@ -18,7 +18,12 @@ const loginUserUseCase = async ({ email, password }) => {
   }
 
   const token = jwt.sign(
-    { userId: user._id, isAdmin: user.isAdmin },
+    {
+      first_name: user.first_name,
+      last_name: user.last_name,
+      userId: user._id,
+      isAdmin: user.isAdmin,
+    },
     process.env.JWT_SECRET,
     { expiresIn: "1h" }
   );

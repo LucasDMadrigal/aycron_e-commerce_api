@@ -12,8 +12,8 @@ export const createDefaultUser = async () => {
   if (!existingUser) {
 
     const newUser = {
-      first_name: "Admin",
-      last_name: "Default",
+      first_name: "Lucas",
+      last_name: "Admin",
       email,
       password: "admin123",
       isAdmin: true,

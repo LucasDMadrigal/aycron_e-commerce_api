@@ -4,11 +4,18 @@
   "description": "",
   "main": "index.js",
   "nyc": {
-  "include": ["src/**/*.js"],  
-  "exclude": ["**/tests/**"],  
-  "reporter": ["text", "html"],
-  "all": true                  
-},
+    "include": [
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "**/tests/**"
+    ],
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "all": true
+  },
   "scripts": {
     "test": "mocha --config mocha.config.json",
     "coverage": "nyc mocha --config mocha.config.json",

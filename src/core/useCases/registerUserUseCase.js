@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 
 const userRepository = new MongoUserRepository();
 
-const registerUserUseCase = async ({ first_name, last_name, email, password }) => {
+const registerUserUseCase = async ({ first_name, last_name, email, password, isAdmin }) => {
   const user = await userRepository.findByEmail(email);
 
   if (user) {
@@ -18,6 +18,7 @@ const registerUserUseCase = async ({ first_name, last_name, email, password }) =
     last_name,
     email,
     password: encryptedPassword,
+    isAdmin,
   });
   const userCreated = await userRepository.createUser(newUser);
   return { statusCode: 201, payload: userCreated };
