@@ -21,7 +21,7 @@ const registerUserUseCase = async ({ first_name, last_name, email, password, isA
     isAdmin,
   });
   const userCreated = await userRepository.createUser(newUser);
-  return { statusCode: 201, payload: userCreated };
+  return { statusCode: 201, payload: "user Created" };
 };
 
 export default registerUserUseCase;
