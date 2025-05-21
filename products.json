@@ -4,69 +4,78 @@
     "description": "Smartphone con pantalla OLED de 6.5 pulgadas y cámara de 48 MP",
     "price": 699.99,
     "stock": 120,
-    "delete": false
-  },
+    "delete": false,
+    "image": "https://unsplash.com/es/fotos/dos-telefonos-negros-uno-al-lado-del-otro-sobre-una-superficie-blanca-OO-8PdvF25M"  },
   {
     "name": "Laptop",
     "description": "Laptop de 15 pulgadas con procesador Intel i7 y 16 GB de RAM",
     "price": 1199.99,
     "stock": 50,
-    "delete": false
+    "delete": false,
+    "image": "https://media.istockphoto.com/id/1023428598/es/foto/ilustraci%C3%B3n-3d-port%C3%A1til-aislado-en-fondo-blanco-port%C3%A1til-con-vac%C3%ADo-port%C3%A1til-con-pantalla-en-un.webp?a=1&b=1&s=612x612&w=0&k=20&c=Kjsn35yXjvVXnX22K-5igaIrPjj0PNbLZtvk-QfQYbU="
   },
   {
     "name": "Tablet",
     "description": "Tablet de 10 pulgadas con almacenamiento de 64 GB",
     "price": 299.99,
     "stock": 80,
-    "delete": false
+    "delete": false,
+    "image": "https://media.istockphoto.com/id/1097984258/es/foto/tabletas-digitales-modernos-aisladas-con-trazado-de-recorte-para-pantallas.webp?a=1&b=1&s=612x612&w=0&k=20&c=NZ1F-FRwJJiJJB_uBNDI_bCtMNDHi1sV3IsElfdcf-s="
   },
   {
     "name": "Smartwatch",
     "description": "Smartwatch resistente al agua con monitor de frecuencia cardíaca",
     "price": 199.99,
     "stock": 150,
-    "delete": false
+    "delete": false,
+    "image": "https://media.istockphoto.com/id/939659044/es/foto/reloj-del-fasion.webp?a=1&b=1&s=612x612&w=0&k=20&c=Tw0R-baWxNAusK7a5rksNSByb7-AC_CQlpMQ9Ify4kM="
   },
   {
     "name": "Auriculares inalámbricos",
     "description": "Auriculares con cancelación de ruido y batería de larga duración",
     "price": 129.99,
     "stock": 200,
-    "delete": false
+    "delete": false,
+    "image": "https://media.istockphoto.com/id/1246138278/es/foto/auriculares-inal%C3%A1mbricos-blancos-met%C3%A1licos-plateados-en-el-aire-aislados-sobre-fondo-blanco.webp?a=1&b=1&s=612x612&w=0&k=20&c=lkGXduMX9ucAga9fnStxwHN4ZtjfOgbmhnj7D68A5B4="
   },
   {
     "name": "Monitor",
     "description": "Monitor de 27 pulgadas 4K UHD",
     "price": 399.99,
     "stock": 60,
-    "delete": false
+    "delete": false,
+    "image": "https://media.istockphoto.com/id/1439837596/es/foto/tv-en-blanco-o-marco-de-fotos-con-espacio-de-copia.webp?a=1&b=1&s=612x612&w=0&k=20&c=mbBDrIcY7Jy2q-VlewBL0H_YnajqRB6IVn7iN_uDQMw="
   },
   {
     "name": "Teclado mecánico",
     "description": "Teclado mecánico con retroiluminación RGB",
     "price": 89.99,
     "stock": 180,
-    "delete": false
+    "delete": false,
+    "image": "https://media.istockphoto.com/id/2200392597/es/foto/blanco-inal%C3%A1mbrico-gaming-mec%C3%A1nico-pc-60-por-ciento-teclado-primer-plano-dise%C3%B1o-minimalista-y.webp?a=1&b=1&s=612x612&w=0&k=20&c=Gjp7IpZQ3gpJXv_ecScjM05Bh4n3w1jIFYzBih1ATHg="
   },
   {
     "name": "Mouse inalámbrico",
     "description": "Mouse ergonómico con sensor óptico de alta precisión",
     "price": 49.99,
     "stock": 150,
-    "delete": false
+    "delete": false,
+    "image": "https://media.istockphoto.com/id/104110496/es/foto/blanco-uniforme-rat%C3%B3n.webp?a=1&b=1&s=612x612&w=0&k=20&c=g0wSZuni4Wf2BKQXgEHaTCSMOBKlQvEknML6Xzgbj6A="
   },
   {
     "name": "Cámara digital",
     "description": "Cámara digital de 20 MP con lente zoom óptico 10x",
     "price": 599.99,
     "stock": 30,
-    "delete": false
+    "delete": false,
+    "image": "https://media.istockphoto.com/id/185278433/es/foto/c%C3%A1mara-de-fotograf%C3%ADa-digital.webp?a=1&b=1&s=612x612&w=0&k=20&c=Luw8QgjlwX1W0F-hY4YQLlBuDBC2_hXCB0JXfhZL_5s="
   },
   {
     "name": "Disco duro externo",
     "description": "Disco duro externo de 1 TB para almacenamiento adicional",
     "price": 79.99,
     "stock": 120,
-    "delete": false
+    "delete": false,
+    "image": "https://media.istockphoto.com/id/484043778/es/foto/unidad-de-disco-duro-externa.webp?a=1&b=1&s=612x612&w=0&k=20&c=eQA4XVG7vLbRBcpzG4PUWAot5uj0HuGRMltCYXvcWlo="
   }
 ]

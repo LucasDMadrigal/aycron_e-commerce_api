@@ -22,11 +22,11 @@ const purchaseProductUseCase = async (products, userId) => {
 
       for (const product of products) {
         const productExists = await productRepository.findById(
-          product.product_id,
+          product._id,
           session
         );
-        if (!productExists) {
-          return { statusCode: 404, payload: "Product not found" };
+        if (productExists == null) {
+          return { statusCode: 404, payload: "Product not found_3" };
         }
 
         if (productExists.stock < product.quantity) {
