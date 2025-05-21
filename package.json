@@ -17,9 +17,8 @@
     "all": true
   },
   "scripts": {
-    "test": "mocha --config mocha.config.json",
-    "coverage": "nyc mocha --config mocha.config.json",
-    "start": "node --env-file .env --watch src/app.js"
+    "dev": "node --env-file .env --watch src/app.js",
+    "start" : "node src/app.js"
   },
   "keywords": [],
   "author": "",
