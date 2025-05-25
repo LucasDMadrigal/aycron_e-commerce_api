@@ -1,0 +1,116 @@
+{
+  "info": {
+    "name": "Aycron E-Commerce - Carrito (localhost)",
+    "_postman_id": "cart-api-localhost",
+    "description": "Colecci\u00f3n para testear endpoints del carrito de compras en localhost",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET /cart - Obtener carrito",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/cart",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "cart"
+          ]
+        }
+      }
+    },
+    {
+      "name": "POST /cart - Agregar producto",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"productId\": \"REEMPLAZAR_POR_ID_VALIDO\",\n  \"quantity\": 2\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/cart",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "cart"
+          ]
+        }
+      }
+    },
+    {
+      "name": "DELETE /cart/:productId - Quitar producto",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/cart/REEMPLAZAR_ID",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "cart",
+            "REEMPLAZAR_ID"
+          ]
+        }
+      }
+    },
+    {
+      "name": "DELETE /cart - Vaciar carrito",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/cart",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "cart"
+          ]
+        }
+      }
+    }
+  ]
+}
