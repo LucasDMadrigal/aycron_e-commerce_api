@@ -85,12 +85,11 @@ async updateCart(userId, productId, quantity) {
 }
 
   async deleteProduct(userId, productId) {
-    const cart = await Cart.findOne({ user: userId }).populate('products.product');
+    const cart = await Cart.findOne({ user: userId });
     if (!cart) return null;
     cart.products = cart.products.filter(p => p.product.toString() !== productId);
-    console.log("🚀 ~ CartRepository ~ deleteProduct ~ cart:", cart)
-     cart.save();
-    return cart.products;
+    await cart.save();
+    return (await cart.populate('products.product')).products;
   }
 
   async clearCart(userId) {
