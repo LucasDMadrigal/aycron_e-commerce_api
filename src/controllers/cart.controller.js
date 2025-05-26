@@ -24,7 +24,7 @@ export const addToCart = async (req, res) => {
 export const removeFromCart = async (req, res) => {
   try {
     const { userId } = req.user;
-    console.log("🚀 ~ removeFromCart ~ userId:", userId)
+    console.log("🚀 ~ removeFromCart ~ userId:", userId);
     const { productId } = req.params;
     const cart = await CartUseCase.removeFromCart(userId, productId);
     res.status(200).json(cart);
@@ -49,8 +49,8 @@ export const updateCart = async (req, res) => {
   const { userId } = req.user;
 
   try {
-    await CartUseCase.updateCart(userId, productId, quantity);
-    res.status(200).json({ message: "Carrito actualizado correctamente" });
+    const cart = await CartUseCase.updateCart(userId, productId, quantity);
+    res.status(200).json(cart);
   } catch (error) {
     res.status(500).json({ message: "Error al actualizar el carrito" });
   }

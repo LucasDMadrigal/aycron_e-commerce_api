@@ -4,8 +4,8 @@ import getPurchasesByUserIdUseCase from "../core/useCases/getPurchasesByUserIdUs
 import getAllPurchasesUseCase from "../core/useCases/getAllPurchasesUseCase.js";
 
 const createPurchase = async (req, res) => {
-  const { products, user_id } = req.body;
-  const result = await purchaseProductUseCase(products, user_id);
+  const { products, user_id, total} = req.body;
+  const result = await purchaseProductUseCase(products, user_id, total);
   return res.status(result.statusCode).json(result.payload);
 };
 

@@ -8,7 +8,7 @@ const productRepository = new MongoProductRepository();
 const userRepository = new MongoUserRepository();
 const purchaseRepository = new MongoPurchaseRepository();
 
-const purchaseProductUseCase = async (products, userId) => {
+const purchaseProductUseCase = async (products, userId, total) => {
   const user = await userRepository.findById(userId);
 
   const session = await mongoose.startSession();
@@ -18,33 +18,11 @@ const purchaseProductUseCase = async (products, userId) => {
   }
   try {
     const result = await session.withTransaction(async () => {
-      const purchaseProducts = [];
-
-      for (const product of products) {
-        const productExists = await productRepository.findById(
-          product._id,
-          session
-        );
-        if (productExists == null) {
-          return { statusCode: 404, payload: "Product not found_3" };
-        }
-
-        if (productExists.stock < product.quantity) {
-          return { statusCode: 400, payload: "Insufficient stock" };
-        }
-
-        productExists.stock -= product.quantity;
-        await productRepository.save(productExists, session);
-        purchaseProducts.push({
-          product_id: productExists._id,
-          quantity: product.quantity,
-          price: productExists.price,
-        });
-      }
 
       const newPurchase = new Purchase({
         user_id: user._id,
-        products: purchaseProducts,
+        products: products,
+        total,
       });
 
       await purchaseRepository.createPurchase(newPurchase, session);
