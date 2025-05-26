@@ -30,12 +30,37 @@ export class CartRepository {
   }
 }
 
+async updateCart(userId, productId, quantity) {
+  
+  try {
+    const cart = await Cart.findOne({ user: userId });
+    if (!cart)
+      return res.status(404).json({ message: "Carrito no encontrado" });
+
+    const productEntry = cart.products.find(
+      (p) => p.product.toString() === productId
+    );
+    if (!productEntry)
+      return res
+        .status(404)
+        .json({ message: "Producto no está en el carrito" });
+
+    productEntry.quantity = quantity;
+    await cart.save();
+
+    res.json(cart.products);
+  } catch (err) {
+    res.status(500).json({ message: "Error al actualizar cantidad" });
+  }
+}
 
   async deleteProduct(userId, productId) {
     const cart = await Cart.findOne({ user: userId });
     if (!cart) return null;
     cart.products = cart.products.filter(p => p.product.toString() !== productId);
-    return cart.save();
+    console.log("🚀 ~ CartRepository ~ deleteProduct ~ cart:", cart)
+     cart.save();
+    return cart.products;
   }
 
   async clearCart(userId) {

@@ -18,6 +18,10 @@ const cartRepository = new CartRepository();
   async clearCart(userId) {
     return await cartRepository.clearCart(userId);
   }
+
+  async updateCart(userId, productId, quantity) {
+    return await cartRepository.updateCart(userId, productId, quantity);
+  }
 }
 
 export default new CartUseCase();
