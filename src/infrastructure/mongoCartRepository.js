@@ -60,9 +60,6 @@ export class CartRepository {
   }
 
   async updateCart(userId, productId, quantity) {
-    console.log("🚀 ~ CartRepository ~ updateCart ~ userId:", userId);
-    console.log("🚀 ~ CartRepository ~ updateCart ~ productId:", productId);
-    console.log("🚀 ~ CartRepository ~ updateCart ~ quantity:", quantity);
 
     try {
       const cart = await Cart.findOne({ user: userId });
